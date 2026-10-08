@@ -787,6 +787,31 @@ body.web-mobile #main .help .cloud-save-section>button{width:calc((100% - 12px)/
 .garden-ready::before{content:' · '}
 body.web-mobile .garden-ready{display:block;font-size:.85em;line-height:1.6}
 body.web-mobile .garden-ready::before{content:none}
+
+body:not(.android-app){--action-button-height:42px;--action-button-font:.9rem;--action-button-padding:8px 14px}
+body.web-mobile{--action-button-height:32px;--action-button-font:.75rem;--action-button-padding:5px 8px}
+body.large:not(.android-app){--action-button-height:46px;--action-button-font:1.0125rem;--cover-button-height:46px;--cover-button-font:1.0125rem}
+body.large.web-mobile{--action-button-height:36px;--action-button-font:.84375rem}
+body:not(.android-app) :is(#start,#main,dialog,#status) button:not(:where(.action,.link,.calendar-day,.wish-slip,.location,.brand-mark,.nav button,.calendar-seasons button,[data-view])){
+ box-sizing:border-box!important;min-height:var(--action-button-height)!important;height:auto!important;
+ font-size:var(--action-button-font)!important;line-height:1.4!important;padding:var(--action-button-padding)!important;
+ border-width:1px!important;border-radius:7px;vertical-align:middle;
+}
+
+body:not(.android-app) #start .start-form button{width:144px;min-width:0!important;max-width:100%;font-size:var(--cover-button-font,.9rem)!important;height:var(--cover-button-height,42px)!important;min-height:var(--cover-button-height,42px)!important}
+body:not(.android-app) #start .start-resume{display:grid;grid-template-columns:repeat(4,minmax(0,144px));gap:10px;max-width:100%;margin-bottom:10px}
+body:not(.android-app) #start #start-new{margin-top:0}
+body:not(.android-app) #start.has-save .start-form .start-resume .primary{width:144px;min-width:0}
+@media(max-width:760px){
+ body:not(.android-app) #start .start-resume{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ body:not(.android-app) #start .start-form button{width:calc((100% - 10px)/2)}
+ body:not(.android-app) #start .start-resume button{width:100%!important}
+}
+
+body:not(.android-app) #main .help>.row:first-of-type>button,body:not(.android-app) #main .cloud-save-section>button{height:var(--action-button-height)!important;padding:5px 8px!important}
+@media(max-width:360px){body.web-mobile #main .help>.row:first-of-type>button,body.web-mobile #main .cloud-save-section>button{font-size:.65rem!important}}
+body:not(.android-app) .calendar-seasons button{font-size:.88rem}
+body.web-mobile .calendar-seasons button{font-size:.78rem}
 </style></head><body>
 <div id="web-controls"><button id="layout-toggle" type="button" aria-pressed="false">手機版</button><button id="lights-toggle" type="button" aria-pressed="false">關燈</button></div>
 <header id="header" class="hidden"><div class="brand"><button class="brand-mark" data-cmd="home" aria-label="返回首頁" title="返回首頁"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 10.5 12 4l7.5 6.5V20h-15Z"/></svg></button><div><strong>風留的小屋</strong><small>0.9.5v25 · 小溪村的四季生活</small></div></div><span class="topnote" id="save-status"></span></header>
@@ -1714,8 +1739,8 @@ events.push({...{"id":"kerchief_river_chat","title":"繡在帕子上的燕子","
 const eventMap=Object.assign(Object.create(null),Object.fromEntries([...events,...LANTERN_EVENTS].map(e=>[e.id,e])));
  
 const SHOP=Object.freeze({ginger:3,seasalt:8,bread:5,potato:4,egg:4,grain:3,flour:5,soybean:4,tealeaf:6,lampoil:CONFIG.LAMP_OIL_PRICE});
-const NOTICE_POOLS=Object.freeze({ansheng:[['flour',2],['egg',2],['wood',3]],
- yan:[['mint',2],['onion',2],['nightmushroom',1]],zhou:[['wood',3],['stone',2],['quartz',1]],lu:[['fiber',3],['sunleaf',2],['iron',1]],chenzhou:[['bead',1],['pottery',1],['mica',1]],cen:[['berry',3],['mushroom',2],['flour',2],['nightmushroom',1]],chenxia:[['fern',2],['pickle',2],['iron',1]],tang:[['fiber',3],['fiber',2],['moonmoss',1]],uncle:[['wood',3],['stone',3],['mint',2]],xin:[['fiber',2],['honey',1],['bead',1]]
+const NOTICE_POOLS=Object.freeze({ansheng:[['flour',1],['egg',2],['wood',3]],
+ yan:[['mint',2],['onion',2],['nightmushroom',1]],zhou:[['wood',3],['stone',2],['quartz',1]],lu:[['fiber',3],['sunleaf',1],['iron',1]],chenzhou:[['bead',1],['pottery',1],['mica',1]],cen:[['berry',2],['mushroom',1],['flour',1],['nightmushroom',1]],chenxia:[['fern',2],['pickle',2],['iron',1]],tang:[['fiber',3],['fiber',2],['moonmoss',1]],uncle:[['wood',3],['stone',3],['mint',2]],xin:[['fiber',2],['honey',1],['bead',1]]
 });
 const NOTICE_COPY=Object.freeze({ansheng:"家裡想添些材料，還缺{qty}份{name}。誰有多的，能替我帶來？——陳安生",yan:TEXTS[640],zhou:TEXTS[641],lu:TEXTS[642],chenzhou:TEXTS[643],cen:TEXTS[644],chenxia:TEXTS[645],tang:TEXTS[646],uncle:TEXTS[647],xin:TEXTS[1069]});
 const CARAVAN_GOODS=Object.freeze([
@@ -6253,7 +6278,10 @@ function migrate58(value){try{
  if(typeof value==='string')value=JSON.parse(value);const raw=unpackSave(value);if(!raw||!Number.isInteger(raw.version)||raw.version>58)return null;
  const copy=JSON.parse(JSON.stringify(raw));if(raw.version>=56)copy.version=55;
  const s=migrate55(copy);if(!s)return null;s.version=58;
- if(raw.version<57){if(raw.version<56)s.calendarLife=[];restoreCalendarLife(s);}return valid58(s)?s:null;
+ if(raw.version<57){if(raw.version<56)s.calendarLife=[];restoreCalendarLife(s);}
+ const reduced={ansheng:{flour:1},lu:{sunleaf:1},cen:{berry:2,mushroom:1,flour:1}};
+ for(const n of s.notices)if(n.type==='request'&&n.expires>=s.day&&reduced[n.npc]?.[n.item])n.qty=Math.min(n.qty,reduced[n.npc][n.item]);
+ return valid58(s)?s:null;
  }catch{return null;}}
 function serializeSave58(s){const copy={...s,version:58,wire:1};delete copy._solo095;copy.log=s.log.map(packEntry);copy.actionResults=(s.actionResults||[]).map(e=>{const i=s.log.indexOf(e);return i>=0?i:packEntry(e);});copy.recollections=(s.recollections||[]).map(packEntry);return serializeRaw(copy);}
 const LUNCH_FOOD_NEED=3;
