@@ -790,7 +790,7 @@ body.web-mobile .garden-ready::before{content:none}
 
 body:not(.android-app){--action-button-height:42px;--action-button-font:.9rem;--action-button-padding:8px 14px}
 body.web-mobile{--action-button-height:32px;--action-button-font:.75rem;--action-button-padding:5px 8px}
-body.large:not(.android-app){--action-button-height:46px;--action-button-font:1.0125rem;--cover-button-height:46px;--cover-button-font:1.0125rem}
+body.large:not(.android-app){--action-button-height:46px;--action-button-font:1.0125rem;--cover-button-height:46px;--cover-button-font:1.2625rem}
 body.large.web-mobile{--action-button-height:36px;--action-button-font:.84375rem}
 body:not(.android-app) :is(#start,#main,dialog,#status) button:not(:where(.action,.link,.calendar-day,.wish-slip,.location,.brand-mark,.nav button,.calendar-seasons button,[data-view])){
  box-sizing:border-box!important;min-height:var(--action-button-height)!important;height:auto!important;
@@ -798,7 +798,7 @@ body:not(.android-app) :is(#start,#main,dialog,#status) button:not(:where(.actio
  border-width:1px!important;border-radius:7px;vertical-align:middle;
 }
 
-body:not(.android-app) #start .start-form button{width:144px;min-width:0!important;max-width:100%;font-size:var(--cover-button-font,.9rem)!important;height:var(--cover-button-height,42px)!important;min-height:var(--cover-button-height,42px)!important}
+body:not(.android-app) #start .start-form button{width:144px;min-width:0!important;max-width:100%;padding:6px 10px!important;font-size:var(--cover-button-font,1.15rem)!important;height:var(--cover-button-height,42px)!important;min-height:var(--cover-button-height,42px)!important}
 body:not(.android-app) #start .start-resume{display:grid;grid-template-columns:repeat(4,minmax(0,144px));gap:10px;max-width:100%;margin-bottom:10px}
 body:not(.android-app) #start #start-new{margin-top:0}
 body:not(.android-app) #start.has-save .start-form .start-resume .primary{width:144px;min-width:0}
@@ -812,6 +812,8 @@ body:not(.android-app) #main .help>.row:first-of-type>button,body:not(.android-a
 @media(max-width:360px){body.web-mobile #main .help>.row:first-of-type>button,body.web-mobile #main .cloud-save-section>button{font-size:.65rem!important}}
 body:not(.android-app) .calendar-seasons button{font-size:.88rem}
 body.web-mobile .calendar-seasons button{font-size:.78rem}
+
+@media(max-width:360px){body:not(.android-app) #start .start-resume{grid-template-columns:minmax(0,1fr)}body:not(.android-app) #start .start-form button{width:100%}}
 </style></head><body>
 <div id="web-controls"><button id="layout-toggle" type="button" aria-pressed="false">手機版</button><button id="lights-toggle" type="button" aria-pressed="false">關燈</button></div>
 <header id="header" class="hidden"><div class="brand"><button class="brand-mark" data-cmd="home" aria-label="返回首頁" title="返回首頁"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 10.5 12 4l7.5 6.5V20h-15Z"/></svg></button><div><strong>風留的小屋</strong><small>0.9.5v25 · 小溪村的四季生活</small></div></div><span class="topnote" id="save-status"></span></header>
