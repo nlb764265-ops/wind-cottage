@@ -1316,6 +1316,17 @@ body:is(.android-app,.web-mobile) .npc-detail{align-content:start}
 
 .lunch-button small{display:block;margin-top:2px;font-size:.78em;font-weight:400}
 .rack-jobs{margin-top:6px;font-size:.85rem;line-height:1.6}
+
+
+body:not(.android-app):not(.web-mobile) #main .cards:has(>.npc-detail){align-items:stretch}
+body:not(.android-app):not(.web-mobile) .npc-detail{display:flex;flex-direction:column}
+body:not(.android-app):not(.web-mobile) .npc-detail>.row:last-child{margin-top:auto;padding-top:4px}
+
+
+body:not(.android-app):not(.web-mobile) #main .bag-toolbar>.filters{align-items:center;gap:8px}
+body:not(.android-app):not(.web-mobile) #main .bag-toolbar>.filters label{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:.84rem}
+body:not(.android-app):not(.web-mobile) #main .bag-toolbar>.filters select{height:36px;padding:0 30px 0 14px;border:1px solid var(--line);border-radius:18px;background:var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%2373796d' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center;color:var(--ink);font-size:.88rem;cursor:pointer;-webkit-appearance:none;appearance:none}
+body:not(.android-app):not(.web-mobile) #main .bag-toolbar>.filters select:hover{border-color:var(--hover-line,var(--line));background-color:var(--hover,var(--pale))}
 </style></head><body>
 <div id="web-controls"><button id="layout-toggle" type="button" aria-pressed="false">手機版</button><button id="lights-toggle" type="button" aria-pressed="false">關燈</button></div>
 <header id="header" class="hidden"><div class="brand"><button class="brand-mark" data-cmd="home" aria-label="返回首頁" title="返回首頁"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.5 10.5 12 4l7.5 6.5V20h-15Z"/></svg></button><div><strong>風留的小屋</strong><small>0.9.9v2 · 小溪村的四季生活</small></div></div><span class="topnote" id="save-status"></span></header>
