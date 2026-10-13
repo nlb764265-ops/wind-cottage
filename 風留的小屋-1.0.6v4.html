@@ -7953,7 +7953,7 @@ eventMap.bond_wen_wrongparcel.options[1]=[TEXTS[4259],TEXTS[4262],{}];
 eventMap.bond_uncle_message.options[1]=[TEXTS[4263],TEXTS[4264],{}];
  
 const JOURNAL_ROUTINE_TITLES=new Set([
- ...PROCESSING.map(p=>p.name),TEXTS[796],
+ ...PROCESSING.map(p=>p.name),TEXTS[796],TEXTS[694],...Object.values(CLINIC_HERBS).map(h=>TEXTS[h.title]),
  '敲碎鹽晶','搓製火把','處理成雞','出售成雞','菜園換一樣種',
  '林下採集','拾柴','石坡上的發現','浮標輕輕一沉','沿溪邊走','翻石找溪蟹','夜間採集'
 ]);
