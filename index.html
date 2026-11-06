@@ -1819,7 +1819,8 @@ body.large.web-mobile #nav .app-nav-primary{align-items:stretch}
 .cook128 .cook128-item:last-child{border-bottom:0}
 .cook128 .cook128-item:hover{background:var(--hover)}
 .cook128 .cook128-item.is-selected{background:var(--hover);font-weight:600}
-.cook128 .cook128-item.is-unready{color:var(--muted)}
+:is(#main,dialog) .recipe-list.cook128 button.cook128-item.is-unready{background:var(--disabled-bg);color:var(--disabled-ink)}
+.cook128 .cook128-item.is-unready small{color:var(--disabled-ink)}
 .cook128 .cook128-item small{flex:none;font-size:.76rem;color:var(--muted);font-weight:normal}
 .cook128 .cook128-star{color:var(--accent);margin-right:4px}
 .cook128 .cook128-empty{padding:10px;margin:0}
