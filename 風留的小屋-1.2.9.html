@@ -11843,6 +11843,8 @@ function wok129Repair(s){
 function wok129Strip(raw){
  const gone='cucumberegg';
  for(const key of ['recipesKnown','protected','found','favRecipes'])if(Array.isArray(raw[key]))raw[key]=raw[key].filter(id=>id!==gone);
+  
+ if(Array.isArray(raw.knownPreferences))raw.knownPreferences=raw.knownPreferences.filter(key=>typeof key!=='string'||key.split('|')[1]!==gone);
  if(raw.inv&&typeof raw.inv==='object')delete raw.inv[gone];
  const listing=raw.expansion?.market?.listing;if(Array.isArray(listing))for(let i=0;i<listing.length;i++)if(listing[i]?.id===gone)listing[i]=null;
 }
